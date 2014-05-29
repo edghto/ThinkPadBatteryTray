@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/bat_status.png</file>
+    </qresource>
+</RCC>
