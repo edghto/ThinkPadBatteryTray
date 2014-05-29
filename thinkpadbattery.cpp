@@ -75,7 +75,7 @@ void ThinkPadBattery::updatedTray()
 {
     const unsigned short CRITICAL_LEVEL = 6;
     unsigned int percent = m_powerStatus->getPercent();
-    m_trayIcon->setIcon(m_icon.at(percent > 5 ? percent % 20 : CRITICAL_LEVEL));
+    m_trayIcon->setIcon(m_icon.at(percent > 5 ? percent / 20 : CRITICAL_LEVEL));
     m_trayIcon->setToolTip(QString("%1 %").arg(percent));
 }
 
