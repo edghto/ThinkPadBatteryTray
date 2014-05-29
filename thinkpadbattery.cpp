@@ -16,21 +16,20 @@ ThinkPadBattery::ThinkPadBattery(PowerStatus* powerStatus)
 
     connect(m_trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
-    connect(this, SIGNAL(lowBatteryLevel()), this, SLOT(showMessage()));
 
-    QIcon icon(":/images/bat_status.png");
-    m_trayIcon->setIcon(icon);
-    m_trayIcon->setToolTip("25%");
+    m_icon.append(QIcon(":/images/bat_0.png"));
+    m_icon.append(QIcon(":/images/bat_20.png"));
+    m_icon.append(QIcon(":/images/bat_40.png"));
+    m_icon.append(QIcon(":/images/bat_60.png"));
+    m_icon.append(QIcon(":/images/bat_80.png"));
+    m_icon.append(QIcon(":/images/bat_100.png"));
+    m_icon.append(QIcon(":/images/bat_critical.png"));
+
     m_trayIcon->show();
 
-    setWindowIcon(icon);
-    setWindowTitle(tr("ThinkPad Battery Status"));
-    resize(400, 300);
-}
-
-void ThinkPadBattery::notify()
-{
-    emit lowBatteryLevel();
+//    setWindowIcon(icon);
+//    setWindowTitle(tr("ThinkPad Battery Status"));
+//    resize(400, 300);
 }
 
 void ThinkPadBattery::iconActivated(QSystemTrayIcon::ActivationReason reason)
@@ -72,6 +71,13 @@ void ThinkPadBattery::showMessage()
             5 * 1000);
 }
 
+void ThinkPadBattery::updatedTray()
+{
+    const unsigned short CRITICAL_LEVEL = 6;
+    unsigned int percent = m_powerStatus->getPercent();
+    m_trayIcon->setIcon(m_icon.at(percent > 5 ? percent % 20 : CRITICAL_LEVEL));
+    m_trayIcon->setToolTip(QString("%1 %").arg(percent));
+}
 
 void ThinkPadBattery::closeEvent(QCloseEvent *event)
 {

@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     ThinkPadBattery thinkPadBattery(&powerStatus);
     thinkPadBattery.hide();
-    powerStatus.registerCallback(&thinkPadBattery);
+    powerStatus.registerLowBatterySlot(&thinkPadBattery);
     powerStatus.start();
 
     return app.exec();

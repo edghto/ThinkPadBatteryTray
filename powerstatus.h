@@ -3,6 +3,7 @@
 
 #include <QThread>
 #include <QMutex>
+#include <QObject>
 
 QT_BEGIN_NAMESPACE
 class QString;
@@ -11,10 +12,11 @@ QT_END_NAMESPACE
 
 class PowerStatus : public QThread
 {
+    Q_OBJECT
 public:
     PowerStatus();
     void run();
-    void registerCallback(ThinkPadBattery* thinkPad);
+    void registerLowBatterySlot(ThinkPadBattery* thinkPad);
 
     /*
      * Return status of battery in percantage
@@ -37,6 +39,10 @@ public:
     static const QString PERCENT;
     static const QString CHARGING;
     static const QString RUNNING;
+
+signals:
+    void lowBatteryLevel();
+    void newBatterLevel();
 
 protected:
     unsigned int m_percent;

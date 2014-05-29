@@ -17,9 +17,11 @@ PowerStatus::PowerStatus()
 {
 }
 
-void PowerStatus::registerCallback(ThinkPadBattery* thinkPad)
+void PowerStatus::registerLowBatterySlot(ThinkPadBattery* thinkPad)
 {
     m_listener = thinkPad;
+    QObject::connect(this, SIGNAL(lowBatteryLevel()), m_listener, SLOT(showMessage()));
+    QObject::connect(this, SIGNAL(newBatterLevel()), m_listener, SLOT(updatedTray()));
 }
 
 void PowerStatus::run()
@@ -45,11 +47,13 @@ void PowerStatus::run()
             m_isRunning  = isRunning;
         }
 
-        if(m_percent <= 28 && m_listener)
+        if(m_percent <= m_treshold && !m_isCharging && m_listener)
         {
-            m_listener->notify();
+            emit lowBatteryLevel();
         }
-        msleep(5000);
+        emit newBatterLevel();
+
+        msleep( 10 * 1000);
     }
 }
 
