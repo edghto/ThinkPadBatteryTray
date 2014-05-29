@@ -1,0 +1,6 @@
+ThinkpadBatteryTray
+*.o
+moc_*
+qrc_*
+
+ThinkpadBatteryTray.pro.user
