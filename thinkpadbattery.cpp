@@ -6,8 +6,6 @@
 #include <QApplication>
 #include "powerstatus.h"
 
-#include <QDebug>
-
 ThinkPadBattery::ThinkPadBattery(PowerStatus* powerStatus)
     : m_powerStatus(powerStatus)
 {
