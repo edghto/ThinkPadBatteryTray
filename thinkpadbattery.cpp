@@ -17,12 +17,12 @@ ThinkPadBattery::ThinkPadBattery(PowerStatus* powerStatus)
     connect(m_trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 
-    m_icon.append(QIcon(":/images/bat_0.png"));
-    m_icon.append(QIcon(":/images/bat_20.png"));
-    m_icon.append(QIcon(":/images/bat_40.png"));
-    m_icon.append(QIcon(":/images/bat_60.png"));
-    m_icon.append(QIcon(":/images/bat_80.png"));
-    m_icon.append(QIcon(":/images/bat_100.png"));
+    m_icon.append(QIcon(":/images/bat_0.gif"));
+    m_icon.append(QIcon(":/images/bat_20.gif"));
+    m_icon.append(QIcon(":/images/bat_40.gif"));
+    m_icon.append(QIcon(":/images/bat_60.gif"));
+    m_icon.append(QIcon(":/images/bat_80.gif"));
+    m_icon.append(QIcon(":/images/bat_100.gif"));
     m_icon.append(QIcon(":/images/bat_critical.png"));
 
     m_trayIcon->show();

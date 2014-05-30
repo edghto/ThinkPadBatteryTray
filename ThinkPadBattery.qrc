@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/bat_0.png</file>
-        <file>images/bat_20.png</file>
-        <file>images/bat_40.png</file>
-        <file>images/bat_60.png</file>
-        <file>images/bat_80.png</file>
-        <file>images/bat_100.png</file>
+        <file>images/bat_20.gif</file>
+        <file>images/bat_0.gif</file>
+        <file>images/bat_40.gif</file>
+        <file>images/bat_60.gif</file>
+        <file>images/bat_80.gif</file>
+        <file>images/bat_100.gif</file>
         <file>images/bat_critical.png</file>
     </qresource>
 </RCC>
